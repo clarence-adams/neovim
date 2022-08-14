@@ -65,13 +65,8 @@ require'nvim-treesitter.configs'.setup {
 vim.opt.termguicolors = true;
 vim.opt.showmode = false;
 vim.opt.relativenumber = true;
-vim.opt.signcolumn = "yes";
-
--- Indentation
--- set tabstop=8
--- set softtabstop=4
--- set shiftwidth=4
--- set expandtab
+vim.opt.signcolumn = "yes"; -- prevents ALE from shifting everything
+vim.opt.autoindent = true;
 
 -- LSP
 require'lspconfig'.html.setup{}
