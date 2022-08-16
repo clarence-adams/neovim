@@ -5,8 +5,6 @@ vim.call('plug#begin')
 --   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
 
 -- Any valid git URL is allowed
--- Embark theme
-Plug('embark-theme/vim', { as = 'embark', branch = 'main' })
 
 -- Collection of common configurations for the Nvim LSP client
 Plug 'neovim/nvim-lspconfig'
@@ -25,6 +23,13 @@ Plug 'rust-lang/rust.vim'
 
 -- Autopairs
 Plug 'windwp/nvim-autopairs'
+
+-- Telescope
+Plug 'nvim-lua/plenary.nvim' -- dependency
+Plug('nvim-telescope/telescope.nvim', { tag = '0.1.0' })
+
+-- Embark theme
+Plug('embark-theme/vim', { as = 'embark', branch = 'main' })
 
 -- Initialize plugin system
 vim.call('plug#end')
