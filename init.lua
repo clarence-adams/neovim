@@ -18,15 +18,15 @@ Plug 'dense-analysis/ale'
 -- lightline
 Plug 'itchyny/lightline.vim'
 
--- Rust
-Plug 'rust-lang/rust.vim'
-
 -- Autopairs
 Plug 'windwp/nvim-autopairs'
 
 -- Telescope
 Plug 'nvim-lua/plenary.nvim' -- dependency
 Plug('nvim-telescope/telescope.nvim', { tag = '0.1.0' })
+
+-- Rust
+Plug 'rust-lang/rust.vim'
 
 -- Embark theme
 Plug('embark-theme/vim', { as = 'embark', branch = 'main' })
@@ -67,12 +67,6 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
-vim.opt.termguicolors = true;
-vim.opt.showmode = false;
-vim.opt.relativenumber = true;
-vim.opt.signcolumn = "yes"; -- prevents ALE from shifting everything
-vim.opt.autoindent = true;
-
 -- LSP
 require'lspconfig'.html.setup{}
 require'lspconfig'.cssls.setup{}
@@ -80,12 +74,42 @@ require'lspconfig'.eslint.setup{}
 require'lspconfig'.tsserver.setup{}
 require'lspconfig'.rust_analyzer.setup{}
 require'lspconfig'.svelte.setup{}
+
 -- Autopairs
 require("nvim-autopairs").setup{}
+
+-- Keybindings
+
+-- Telescope
+vim.keymap.set('n', 'ff', function()
+	require('telescope.builtin').find_files()
+end, {desc = 'Telescope find_file'})
 
 vim.cmd('filetype plugin indent on')
 vim.cmd('syntax on')
 vim.cmd('colorscheme embark')
+
+-- Settings
+
+-- General
+vim.opt.termguicolors = true
+vim.opt.showmode = false
+vim.opt.relativenumber = true
+vim.opt.signcolumn = 'yes' -- prevents ALE from shifting everything
+vim.opt.autoindent = true
+vim.opt.cc = '100'
+-- ALE
+vim.g.ale_fixers = {
+	html = 'prettier',
+	css = 'prettier',
+	javascript = 'prettier',
+	svelte = 'prettier'
+}
+vim.g.ale_fix_on_save = 1
+vim.g.ale_completion_enabled = 1
+
+-- Rust
 vim.g.rustfmt_autosave = 1
+
+-- Lightline Settings
 vim.g.lightline = { colorscheme = 'embark' }
--- need rust analyzer
